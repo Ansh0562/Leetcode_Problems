@@ -1,18 +1,19 @@
-import java.util.Arrays;
+import java.util.*;
 class Solution {
     public int maximumWealth(int[][] accounts) {
-        int num2[] = new int[accounts.length];
+       int n = accounts.length; 
+       int ans[] = new int[n];
+       for (int row=0;row<n;row++){
         int sum=0;
-        for (int i =0;i < accounts.length;i++){
-            for (int j=0;j<accounts[i].length;j++){
-                sum = Arrays.stream(accounts[i]).sum();
-                num2[i]=sum;
-            }
-
+        for (int col = 0 ; col<accounts[row].length;col++){
+            sum += accounts[row][col];
 
         }
-        
-        return  Arrays.stream(num2).max().getAsInt();
-        
+        ans[row]=sum;
+
+       }
+       Arrays.sort(ans);
+       int max = ans[ans.length-1];
+       return max; 
     }
 }
