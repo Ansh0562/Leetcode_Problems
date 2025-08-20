@@ -1,12 +1,15 @@
-import java.util.Arrays;
-
 class Solution {
     public int[] getConcatenation(int[] nums) {
-        int[] num2 = nums.clone();
-        int[] joinedArray = Arrays.copyOf(nums, nums.length + num2.length);
-        System.arraycopy(num2, 0, joinedArray, nums.length, num2.length);
-        
-        return joinedArray; // Return the array instead of a string
-    }
-}
+    int ans[] = new int [2*nums.length];
+     // copy first half
+    for (int i = 0; i < nums.length; i++) {
+            ans[i] = nums[i];
+        }
 
+        // copy second half
+        for (int i = 0; i < nums.length; i++) {
+            ans[i + nums.length] = nums[i];
+        }
+    return ans;
+}
+}
