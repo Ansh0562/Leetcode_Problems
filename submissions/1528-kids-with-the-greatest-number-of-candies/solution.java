@@ -1,19 +1,25 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 class Solution {
     public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-        int maxCandy = Arrays.stream(candies).max().getAsInt(); // Find the max in original array
-        ArrayList<Boolean> a1 = new ArrayList<>();
+        int maxcandies = candies[0];
+        int ans[] = new int[candies.length];
+        for (int i=0;i<candies.length;i++){
+            if(maxcandies < candies[i]){
+                maxcandies = candies[i];
+            }
 
-        for (int candy : candies) {
-            a1.add(candy + extraCandies >= maxCandy); // Compare and add true/false
+        }
+         List<Boolean> result = new ArrayList<>();
+
+        // Step 3: Check condition for each kid
+        for (int j = 0; j < candies.length; j++) {
+            if (candies[j] + extraCandies >= maxcandies) {
+                result.add(true);
+            } else {
+                result.add(false);
+            }
         }
 
-        return a1; // Return the Boolean ArrayList
+        return result;
+
     }
-
-    
 }
-
