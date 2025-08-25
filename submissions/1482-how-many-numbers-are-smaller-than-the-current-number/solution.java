@@ -1,22 +1,15 @@
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
-        int size = nums.length;
-        int count = 0;
-        int [] result = new int[size];
-        for (int i=0;i<size;i++){
-            for (int j=0;j<size;j++){
-                if(nums[i]>nums[j]){
-                    count++;
-                }
-
-            }
-            result[i]=count;
-            count=0;
-
-
+        int ans[] = nums.clone();
+        Arrays.sort(ans);
+        Map<Integer,Integer>map = new HashMap();
+        for(int i=0;i<ans.length;i++){
+            map.putIfAbsent(ans[i],i);
         }
-
+        int []result = new int[nums.length];
+        for (int i=0;i<nums.length;i++){
+            result[i]=map.get(nums[i]);
+        }
         return result;
-        
     }
 }
