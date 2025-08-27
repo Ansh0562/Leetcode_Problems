@@ -1,31 +1,37 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int []ans = {-1,-1};
-        ans[0] = search(nums,target,true);
-        ans[1] = search(nums,target,false);
+        int[] ans = {-1, -1};
+
+        int start = search(nums, target, true);   // find first occurrence
+        int end = search(nums, target, false);    // find last occurrence
+
+        ans[0] = start;
+        ans[1] = end;
         return ans;
     }
-    static int search(int[] arr, int target,boolean occ){
-        int left = 0;
-        int right = arr.length-1;
-        int result = -1;
-        while(left <= right){
-            int mid = (left+right)/2;
-            if(arr[mid] == target){
-                result = mid;
-            
-            if(occ){
-                right = mid-1;
-            }else{
-                left = mid+1;
-            }
-            }
-            else if(arr[mid]<target){
-                left = mid+1;
-            }else{
-                right = mid-1;
+
+    private int search(int[] nums, int target, boolean findFirst) {
+        int ans = -1;
+        int start = 0;
+        int end = nums.length - 1;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if (target < nums[mid]) {
+                end = mid - 1;
+            } else if (target > nums[mid]) {
+                start = mid + 1;
+            } else {
+                ans = mid; 
+                if (findFirst) {
+                    end = mid - 1;   
+                } else {
+                    start = mid + 1; 
+                }
             }
         }
-        return result;
+        return ans;
     }
 }
+
