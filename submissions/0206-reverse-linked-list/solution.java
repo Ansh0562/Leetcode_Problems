@@ -19,6 +19,5 @@ class Solution {
             curr = temp;
         }
         return pre;
-        
     }
 }
