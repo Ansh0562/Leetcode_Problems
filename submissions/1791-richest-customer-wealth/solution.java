@@ -1,21 +1,16 @@
-import java.util.*;
 class Solution {
     public int maximumWealth(int[][] accounts) {
-        int ans  = Integer.MIN_VALUE;
-       int n = accounts.length; 
-        
-       for (int row=0;row<n;row++){
-        
-        int sum=0;
-        for (int col = 0 ; col<accounts[row].length;col++){
-            sum += accounts[row][col];
+        int max = 0;
+        for (int i=0 ; i < accounts.length ; i++){
+            int current = 0;
+            for (int j=0 ; j < accounts[i].length;j++){
+                current  += accounts[i][j];
+            }
+            if(current > max){
+                max = current;
+            }
 
         }
-        if(sum > ans){
-        ans = sum;
-       }
-       }
-
-       return ans;
+        return max;
     }
 }
